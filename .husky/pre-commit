@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\" && yarn build
+npx prettier --write . && yarn build
