@@ -16,6 +16,7 @@ To get started, follow these steps:
 
 ## Here are the available scripts in the `package.json` file:
 
+```json
 "scripts": {
 "dev": "next dev",
 "build": "next build",
@@ -26,6 +27,7 @@ To get started, follow these steps:
 "predev": "prisma generate",
 "lint": "next lint"
 },
+```
 
 ## Deployment
 
