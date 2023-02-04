@@ -7,7 +7,7 @@ export const config = {
 };
 
 const sfPro = fetch(
-  new URL("../../styles/SF-Pro-Display-Medium.otf", import.meta.url),
+  new URL("../../styles/SF-Pro-Display-Medium.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
@@ -61,6 +61,6 @@ export default async function handler(req: NextRequest) {
           data: sfProData,
         },
       ],
-    },
+    }
   );
 }

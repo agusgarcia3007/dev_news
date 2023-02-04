@@ -27,7 +27,7 @@ export default function Modal({
         setShowModal(false);
       }
     },
-    [setShowModal],
+    [setShowModal]
   );
 
   useEffect(() => {

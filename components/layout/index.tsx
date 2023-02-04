@@ -1,10 +1,8 @@
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
-import { useSignInModal } from "./sign-in-modal";
 
 export default function Layout({
   meta,
@@ -26,7 +24,7 @@ export default function Layout({
       <div
         className={`fixed top-0 w-full ${
           scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
+            ? "border-b border-gray-200 bg-white backdrop-blur-none sm:backdrop-blur-xl"
             : "bg-white/0"
         } z-30 transition-all`}
       >
@@ -43,7 +41,7 @@ export default function Layout({
           </Link>
         </div>
       </div>
-      <main className="flex w-full flex-col items-center justify-center py-32">
+      <main className="flex w-full flex-col items-center justify-center py-10 sm:py-16">
         {children}
       </main>
     </>

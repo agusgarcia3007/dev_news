@@ -1,54 +1,63 @@
-import { ReactNode } from "react";
-import ReactMarkdown from "react-markdown";
-import Balancer from "react-wrap-balancer";
+import { New } from "@/lib/types/New";
 
 export default function Card({
+  large,
   title,
   description,
-  demo,
-  large,
-}: {
-  title: string;
-  description: string;
-  demo: ReactNode;
-  large?: boolean;
-}) {
+  image,
+  url,
+  cover_image,
+  user,
+  published_at,
+  type_of,
+}: New) {
+  const date = new Date(published_at).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const { profile_image, username } = user;
+
   return (
     <div
-      className={`relative col-span-1 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md ${
+      className={`relative col-span-1 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md ${
         large ? "md:col-span-2" : ""
       }`}
     >
-      <div className="flex h-60 items-center justify-center">{demo}</div>
-      <div className="mx-auto max-w-md text-center">
-        <h2 className="bg-gradient-to-br from-black to-stone-500 bg-clip-text font-display text-xl font-bold text-transparent md:text-3xl md:font-normal">
-          <Balancer>{title}</Balancer>
-        </h2>
-        <div className="prose-sm -mt-2 leading-normal text-gray-500 md:prose">
-          <Balancer>
-            <ReactMarkdown
-              components={{
-                a: ({ node, ...props }) => (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    {...props}
-                    className="font-medium text-gray-800 underline transition-colors"
-                  />
-                ),
-                code: ({ node, ...props }) => (
-                  <code
-                    {...props}
-                    // @ts-ignore (to fix "Received `true` for a non-boolean attribute `inline`." warning)
-                    inline="true"
-                    className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800"
-                  />
-                ),
-              }}
-            >
-              {description}
-            </ReactMarkdown>
-          </Balancer>
+      <div
+        className="mx-auto flex h-full flex-col justify-between rounded-lg bg-white px-8 py-4 shadow-md "
+        style={{ cursor: "auto" }}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-light text-gray-600 ">{date}</span>
+          <a className="transform cursor-pointer rounded bg-gray-600 px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 hover:bg-gray-500">
+            {type_of}
+          </a>
+        </div>
+        <div className="mt-2">
+          <a
+            href={url}
+            className="text-2xl font-bold text-gray-700 hover:text-gray-600 hover:underline "
+          >
+            {title}
+          </a>
+          <p className="mt-2 text-gray-600 ">{description}</p>
+        </div>
+        <div className="mt-4 flex items-center justify-between">
+          <a href={url} className="text-blue-600 hover:underline ">
+            Read more ⟶
+          </a>
+          <div className="flex items-center">
+            <img
+              src={profile_image}
+              alt={username}
+              className="mx-4 hidden h-10 w-10 rounded-full object-cover sm:block"
+            />
+            <a className="cursor-pointer font-bold text-gray-700 ">
+              {username}
+            </a>
+          </div>
         </div>
       </div>
     </div>
